@@ -1,31 +1,34 @@
 <x-layouts.app :title="'Categories'">
     <div class="space-y-6">
-        <!-- Header -->
+        <!-- Header with Search and Add Button in One Row -->
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-                <h1 class="text-2xl font-bold tracking-tight text-slate-800"></h1>
+            <div class="flex-1">
+                <form method="GET" class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <div class="flex-1">
+                        <input type="text"
+                                name="search"
+                                value="{{ $search }}"
+                                placeholder="Search category description..."
+                                class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+                    </div>
+                    <div class="flex gap-2">
+                        <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                            Search
+                        </button>
+                        @if($search)
+                            <a href="{{ route('categories.index') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2">
+                                <i class="fa-solid fa-xmark text-xs"></i>
+                                Clear
+                            </a>
+                        @endif
+                    </div>
+                </form>
             </div>
-            <a href="{{ route('categories.create') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+            <a href="{{ route('categories.create') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:w-auto w-full">
                 <i class="fa-solid fa-plus text-xs"></i>
                 Add Category
             </a>
-        </div>
-
-        <!-- Search Bar -->
-        <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <form method="GET" class="flex flex-col gap-3 sm:flex-row">
-                <div class="flex-1">
-                    <input type="text"
-                            name="search"
-                            value="{{ $search }}"
-                            placeholder="Search category description..."
-                            class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
-                </div>
-                <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
-                    <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                    Search
-                </button>
-            </form>
         </div>
 
         <!-- Categories Table -->

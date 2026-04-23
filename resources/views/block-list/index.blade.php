@@ -2,17 +2,10 @@
     <div class="space-y-6">
         <!-- Header -->
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-                <h1 class="text-2xl font-bold tracking-tight text-slate-800"></h1>
-            </div>
-            <a href="{{ route('block-list.create') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
-                <i class="fa-solid fa-plus text-xs"></i>
-                Add New Block
-            </a>
         </div>
 
         <!-- Stats Grid -->
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid gap-6 sm:grid-cols-2">
             <div class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
                 <div class="flex items-center justify-between">
                     <div>
@@ -21,18 +14,6 @@
                     </div>
                     <div class="rounded-lg bg-red-50 p-3">
                         <i class="fa-solid fa-ban text-red-500 text-lg"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium uppercase tracking-wider text-slate-500">Unique Customers</p>
-                        <p class="mt-2 text-3xl font-bold text-slate-800">{{ $blockLists->pluck('customer_id')->unique()->count() }}</p>
-                    </div>
-                    <div class="rounded-lg bg-blue-50 p-3">
-                        <i class="fa-solid fa-users text-blue-500 text-lg"></i>
                     </div>
                 </div>
             </div>
@@ -50,25 +31,40 @@
             </div>
         </div>
 
-        <!-- Search Bar -->
-        <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <form method="GET" class="flex flex-col gap-3 sm:flex-row">
-                <div class="flex-1">
-                    <div class="relative">
-                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                        </span>
-                        <input type="text"
-                                name="search"
-                                value="{{ request('search') }}"
-                                placeholder="Search by customer name..."
-                                class="w-full rounded-lg border border-slate-300 px-4 py-2.5 pl-10 text-sm text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        <!-- Search Bar and Add Button in One Row -->
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex-1">
+                <form method="GET" class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                                <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                            </span>
+                            <input type="text"
+                                    name="search"
+                                    value="{{ request('search') }}"
+                                    placeholder="Search by customer name..."
+                                    class="w-full rounded-lg border border-slate-300 px-4 py-2.5 pl-10 text-sm text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+                        </div>
                     </div>
-                </div>
-                <button type="submit" class="rounded-lg bg-slate-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
-                    Search
-                </button>
-            </form>
+                    <div class="flex gap-2">
+                        <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                            Search
+                        </button>
+                        @if(request('search'))
+                            <a href="{{ route('block-list.index') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2">
+                                <i class="fa-solid fa-xmark text-xs"></i>
+                                Clear
+                            </a>
+                        @endif
+                    </div>
+                </form>
+            </div>
+            <a href="{{ route('block-list.create') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:w-auto w-full">
+                <i class="fa-solid fa-plus text-xs"></i>
+                Add New Block
+            </a>
         </div>
 
         <!-- Block List Table -->

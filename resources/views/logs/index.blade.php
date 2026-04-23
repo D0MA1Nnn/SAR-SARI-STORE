@@ -3,12 +3,7 @@
         <!-- Header -->
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                <h1 class="text-2xl font-bold tracking-tight text-slate-800"></h1>
             </div>
-            <a href="{{ route('logs.create') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
-                <i class="fa-solid fa-plus text-xs"></i>
-                Add Log
-            </a>
         </div>
 
         <!-- Summary Cards -->
@@ -50,31 +45,39 @@
             </div>
         </div>
 
-        <!-- Filter Bar -->
-        <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <form method="GET" class="flex flex-col gap-3 sm:flex-row sm:items-end">
-                <div class="flex-1">
-                    <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500">Filter by Date</label>
-                    <div class="relative">
-                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                            <i class="fa-regular fa-calendar text-xs"></i>
-                        </span>
-                        <input type="date" 
-                               name="search" 
-                               value="{{ $search }}"
-                               class="w-full rounded-lg border border-slate-300 px-4 py-2.5 pl-10 text-sm text-slate-700 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        <!-- Filter Bar and Add Button in One Row -->
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex-1">
+                <form method="GET" class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                                <i class="fa-regular fa-calendar text-xs"></i>
+                            </span>
+                            <input type="date" 
+                                   name="search" 
+                                   value="{{ $search }}"
+                                   class="w-full rounded-lg border border-slate-300 px-4 py-2.5 pl-10 text-sm text-slate-700 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+                        </div>
                     </div>
-                </div>
-                <button type="submit" class="rounded-lg bg-slate-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
-                    <i class="fa-solid fa-filter mr-2 text-xs"></i>
-                    Filter
-                </button>
-                @if($search)
-                    <a href="{{ route('logs.index') }}" class="rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50">
-                        Clear
-                    </a>
-                @endif
-            </form>
+                    <div class="flex gap-2">
+                        <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
+                            <i class="fa-solid fa-filter text-xs"></i>
+                            Filter
+                        </button>
+                        @if($search)
+                            <a href="{{ route('logs.index') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2">
+                                <i class="fa-solid fa-xmark text-xs"></i>
+                                Clear
+                            </a>
+                        @endif
+                    </div>
+                </form>
+            </div>
+            <a href="{{ route('logs.create') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:w-auto w-full">
+                <i class="fa-solid fa-plus text-xs"></i>
+                Add Log
+            </a>
         </div>
 
         <!-- Cash Logs Table -->
