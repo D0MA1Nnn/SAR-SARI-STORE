@@ -47,25 +47,29 @@ class CashLogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CashLog $cashLog): View
+    public function show(CashLog $log): View
     {
+        $cashLog = $log;
+
         return view('logs.show', compact('cashLog'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CashLog $cashLog): View
+    public function edit(CashLog $log): View
     {
+        $cashLog = $log;
+
         return view('logs.edit', compact('cashLog'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCashLogRequest $request, CashLog $cashLog): RedirectResponse
+    public function update(UpdateCashLogRequest $request, CashLog $log): RedirectResponse
     {
-        $cashLog->update($request->validated());
+        $log->update($request->validated());
 
         return redirect()->route('logs.index')->with('success', 'Cash log updated successfully.');
     }
@@ -73,9 +77,9 @@ class CashLogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CashLog $cashLog): RedirectResponse
+    public function destroy(CashLog $log): RedirectResponse
     {
-        $cashLog->delete();
+        $log->delete();
 
         return redirect()->route('logs.index')->with('success', 'Cash log deleted successfully.');
     }

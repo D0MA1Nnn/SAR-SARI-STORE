@@ -68,7 +68,7 @@
             </div>
 
             <div class="flex items-center gap-3 border-t border-slate-200 px-6 py-4">
-                <a href="{{ route('logs.edit', $cashLog) }}" class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700">
+                <a href="{{ route('logs.edit', $cashLog->id) }}" class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700">
                     <i class="fa-regular fa-pen-to-square text-xs"></i>
                     Edit Log
                 </a>
