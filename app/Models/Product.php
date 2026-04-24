@@ -19,6 +19,7 @@ class Product extends Model
         'product_name',
         'category_id',
         'price',
+        'stocks',
     ];
 
     protected function casts(): array

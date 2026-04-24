@@ -79,12 +79,12 @@
                             <i class="fa-regular fa-envelope mr-1.5 text-slate-400"></i>
                             Email Address
                         </label>
-                        <input type="email" 
-                               name="email" 
-                               value="{{ old('email') }}" 
-                               required
-                               placeholder="admin@example.com"
-                               class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition">
+                        <input type="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                required
+                                placeholder="admin@example.com"
+                                class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition">
                         @error('email')
                             <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -96,11 +96,11 @@
                             <i class="fa-solid fa-lock mr-1.5 text-slate-400"></i>
                             Password
                         </label>
-                        <input type="password" 
-                               name="password" 
-                               required
-                               placeholder="••••••••"
-                               class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition">
+                        <input type="password"
+                                name="password"
+                                required
+                                placeholder="••••••••"
+                                class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition">
                         @error('password')
                             <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -109,9 +109,9 @@
                     <!-- Remember Me & Forgot Password -->
                     <div class="flex items-center justify-between">
                         <label class="inline-flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
-                            <input type="checkbox" 
-                                   name="remember" 
-                                   class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500">
+                            <input type="checkbox"
+                                    name="remember"
+                                    class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500">
                             <span>Remember me</span>
                         </label>
                         <a href="#" class="text-sm text-emerald-600 hover:text-emerald-700 transition">
@@ -120,7 +120,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" 
+                    <button type="submit"
                             class="mt-2 w-full rounded-lg bg-emerald-600 px-4 py-2.5 font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
                         <i class="fa-solid fa-arrow-right-to-bracket mr-2 text-sm"></i>
                         Sign In

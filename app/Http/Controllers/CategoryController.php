@@ -10,9 +10,7 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //Display All Categories
     public function index(): View
     {
         $search = request('search');
@@ -26,17 +24,13 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories', 'search'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    //Show Create Form
     public function create(): View
     {
         return view('categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    //(CREATE operation)
     public function store(StoreCategoryRequest $request): RedirectResponse
     {
         Category::create($request->validated());
@@ -44,25 +38,19 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    //(READ operation)
     public function show(Category $category): View
     {
         return view('categories.show', compact('category'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //Show Edit Form
     public function edit(Category $category): View
     {
         return view('categories.edit', compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    //(UPDATE operation)
     public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
     {
         $category->update($request->validated());
@@ -70,9 +58,7 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    //(DELETE operation)
     public function destroy(Category $category): RedirectResponse
     {
         $category->delete();

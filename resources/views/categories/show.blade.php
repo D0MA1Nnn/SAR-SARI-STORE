@@ -8,22 +8,22 @@
         <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
             <div class="space-y-4">
                 <div class="flex items-start gap-3 border-b border-slate-100 pb-4">
-                    <div class="rounded-lg bg-emerald-50 p-2">
-                        <i class="fa-solid fa-tag text-emerald-600"></i>
+                    <div class="rounded-lg bg-slate-100 p-2">
+                        <i class="fa-solid fa-hashtag text-slate-500"></i>
                     </div>
-                    <div>
+                    <div class="flex-1">
                         <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Category ID</p>
-                        <p class="mt-0.5 font-mono text-sm font-medium text-slate-700">#{{ $category->id }}</p>
+                        <p class="mt-0.5 text-base font-semibold text-slate-800">#{{ $category->id }}</p>
                     </div>
                 </div>
 
                 <div class="flex items-start gap-3">
-                    <div class="rounded-lg bg-slate-100 p-2">
-                        <i class="fa-regular fa-rectangle-list text-slate-500"></i>
+                    <div class="rounded-lg bg-emerald-50 p-2">
+                        <i class="fa-solid fa-folder text-emerald-600"></i>
                     </div>
-                    <div>
+                    <div class="flex-1">
                         <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Description</p>
-                        <p class="mt-0.5 text-sm text-slate-700">{{ $category->description }}</p>
+                        <p class="mt-0.5 text-base font-semibold text-slate-800">{{ $category->description }}</p>
                     </div>
                 </div>
             </div>

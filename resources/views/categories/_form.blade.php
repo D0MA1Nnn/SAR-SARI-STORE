@@ -1,7 +1,7 @@
 @csrf
 <div class="space-y-6">
     <div>
-        <label for="description" class="mb-1.5 block text-sm font-semibold text-slate-700">Description</label>
+        <label for="description" class="mb-1.5 block text-sm font-semibold text-slate-700">Category Description</label>
         <input type="text"
                 name="description"
                 id="description"

@@ -11,9 +11,7 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //Display All Products
     public function index(): View
     {
         $search = request('search');
@@ -27,9 +25,7 @@ class ProductController extends Controller
         return view('products.index', compact('products', 'search'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    //Show Create Form
     public function create(): View
     {
         $categories = Category::orderBy('description')->get();
@@ -37,9 +33,7 @@ class ProductController extends Controller
         return view('products.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    //(CREATE operation)
     public function store(StoreProductRequest $request): RedirectResponse
     {
         Product::create($request->validated());
@@ -47,9 +41,7 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    //(READ operation)
     public function show(Product $product): View
     {
         $product->load('category');
@@ -57,9 +49,7 @@ class ProductController extends Controller
         return view('products.show', compact('product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //Show Edit Form
     public function edit(Product $product): View
     {
         $categories = Category::orderBy('description')->get();
@@ -67,9 +57,7 @@ class ProductController extends Controller
         return view('products.edit', compact('product', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    //(UPDATE operation)
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
         $product->update($request->validated());
@@ -77,9 +65,7 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    //(DELETE operation)
     public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
