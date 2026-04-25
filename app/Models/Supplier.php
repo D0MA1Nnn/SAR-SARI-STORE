@@ -17,6 +17,9 @@ class Supplier extends Model
     protected $fillable = [
         'supplier_name',
         'contact_number',
+        'address',
+        'email',
+        'contact_person',
     ];
 
     public function stockIns(): HasMany

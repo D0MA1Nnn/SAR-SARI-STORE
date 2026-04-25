@@ -6,6 +6,7 @@ use App\Http\Requests\StoreStockInRequest;
 use App\Http\Requests\UpdateStockInRequest;
 use App\Models\Product;
 use App\Models\StockIn;
+use App\Models\Supplier;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -34,8 +35,9 @@ class StockInController extends Controller
     public function create(): View
     {
         $products = Product::orderBy('name')->get();
+        $suppliers = Supplier::orderBy('supplier_name')->get();  // This needs the Supplier class
 
-        return view('stock-in.create', compact('products'));
+        return view('stock-in.create', compact('products', 'suppliers'));
     }
 
     public function store(StoreStockInRequest $request): RedirectResponse
@@ -64,7 +66,7 @@ class StockInController extends Controller
 
     public function show(StockIn $stockIn): View
     {
-        $stockIn->load(['product']);
+        $stockIn->load(['product', 'supplier']);  // Add supplier to load
 
         return view('stock-in.show', compact('stockIn'));
     }
@@ -72,8 +74,9 @@ class StockInController extends Controller
     public function edit(StockIn $stockIn): View
     {
         $products = Product::orderBy('name')->get();
+        $suppliers = Supplier::orderBy('supplier_name')->get();  // Add this
 
-        return view('stock-in.edit', compact('stockIn', 'products'));
+        return view('stock-in.edit', compact('stockIn', 'products', 'suppliers'));
     }
 
     public function update(UpdateStockInRequest $request, StockIn $stockIn): RedirectResponse

@@ -15,9 +15,9 @@ class UpdateStockInRequest extends FormRequest
     {
         return [
             'product_id' => ['required', 'exists:product,id'],
+            'supplier_id' => ['nullable', 'exists:supplier,id'],  // Add this
             'quantity' => ['required', 'integer', 'min:1'],
             'unit_cost' => ['required', 'numeric', 'min:0'],
-            'supplier_id' => ['required', 'exists:supplier,id'],
             'stock_date' => ['required', 'date'],
             'reference' => ['nullable', 'string', 'max:255'],
             'notes' => ['nullable', 'string'],

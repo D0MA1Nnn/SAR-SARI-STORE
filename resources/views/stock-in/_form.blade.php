@@ -19,6 +19,23 @@
         </div>
 
         <div>
+            <label for="supplier_id" class="mb-1.5 block text-sm font-semibold text-slate-700">Supplier</label>
+            <select name="supplier_id"
+                    id="supplier_id"
+                    class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+                <option value="">Select a supplier (optional)</option>
+                @foreach($suppliers as $supplier)
+                    <option value="{{ $supplier->id }}" @selected(old('supplier_id', $stockIn->supplier_id ?? '') == $supplier->id)>
+                        {{ $supplier->supplier_name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('supplier_id')
+                <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
             <label for="quantity" class="mb-1.5 block text-sm font-semibold text-slate-700">Quantity</label>
             <input type="number"
                     min="1"
@@ -44,7 +61,6 @@
                         placeholder="0.00"
                         class="w-full rounded-lg border border-slate-300 px-4 py-2.5 pl-8 text-sm text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
             </div>
-            <p class="mt-1 text-xs text-slate-500">This will update the product's selling price based on markup %</p>
             @error('unit_cost')
                 <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
             @enderror
@@ -63,7 +79,7 @@
         </div>
 
         <div>
-            <label for="reference" class="mb-1.5 block text-sm font-semibold text-slate-700">Reference (Optional)</label>
+            <label for="reference" class="mb-1.5 block text-sm font-semibold text-slate-700">Reference</label>
             <input type="text"
                     name="reference"
                     id="reference"
@@ -77,11 +93,11 @@
     </div>
 
     <div>
-        <label for="notes" class="mb-1.5 block text-sm font-semibold text-slate-700">Notes (Optional)</label>
+        <label for="notes" class="mb-1.5 block text-sm font-semibold text-slate-700">Notes</label>
         <textarea name="notes"
                 id="notes"
                 rows="3"
-                placeholder="Additional notes..."
+                placeholder="Optional notes..."
                 class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">{{ old('notes', $stockIn->notes ?? '') }}</textarea>
         @error('notes')
             <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>

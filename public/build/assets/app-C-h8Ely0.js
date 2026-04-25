@@ -1,0 +1,1 @@
+for(let e of[`toast-success`,`toast-error`]){let t=document.getElementById(e);t&&setTimeout(()=>{t.style.transition=`opacity 0.3s ease`,t.style.opacity=`0`,setTimeout(()=>t.remove(),350)},2500)}

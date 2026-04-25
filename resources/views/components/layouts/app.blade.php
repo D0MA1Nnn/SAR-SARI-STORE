@@ -45,6 +45,7 @@
         $navItems = [
             ['route' => 'dashboard', 'label' => 'Dashboard', 'icon' => 'fa-chart-line', 'pattern' => 'dashboard*'],
             ['route' => 'categories.index', 'label' => 'Categories', 'icon' => 'fa-tags', 'pattern' => 'categories*'],
+            ['route' => 'suppliers.index', 'label' => 'Suppliers', 'icon' => 'fa-truck', 'pattern' => 'suppliers*'], // Supplier added here
             ['route' => 'products.index', 'label' => 'Products', 'icon' => 'fa-boxes-stacked', 'pattern' => 'products*'],
             ['route' => 'stock-in.index', 'label' => 'Stock In', 'icon' => 'fa-arrow-down-wide-short', 'pattern' => 'stock-in*'],
             ['route' => 'stock-out.index', 'label' => 'Stock Out', 'icon' => 'fa-arrow-up-wide-short', 'pattern' => 'stock-out*'],

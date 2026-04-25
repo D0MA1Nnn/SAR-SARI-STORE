@@ -41,15 +41,17 @@
                 <table class="min-w-full">
                     <thead>
                         <tr class="border-b border-slate-100 bg-slate-50/50 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
-                            <th class="px-6 py-3">Supplier</th>
+                            <th class="px-6 py-3">Supplier Name</th>
+                            <th class="px-6 py-3">Contact Person</th>
                             <th class="px-6 py-3">Contact</th>
-                            <th class="px-6 py-3 text-right">Actions</th>
+                            <th class="px-6 py-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 text-sm">
                         @forelse($suppliers as $supplier)
                             <tr class="transition-colors hover:bg-slate-50/50">
                                 <td class="px-6 py-4 font-medium text-slate-700">{{ $supplier->supplier_name }}</td>
+                                <td class="px-6 py-4 text-slate-600">{{ $supplier->contact_person ?? '—' }}</td>
                                 <td class="px-6 py-4 text-slate-600">{{ $supplier->contact_number ?? '—' }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-end gap-4">
@@ -74,7 +76,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3" class="px-6 py-12 text-center">
+                                <td colspan="4" class="px-6 py-12 text-center">
                                     <div class="flex flex-col items-center gap-2">
                                         <i class="fa-regular fa-building text-3xl text-slate-300"></i>
                                         <p class="text-sm text-slate-400">No suppliers found.</p>

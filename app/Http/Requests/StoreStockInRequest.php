@@ -15,6 +15,7 @@ class StoreStockInRequest extends FormRequest
     {
         return [
             'product_id' => ['required', 'exists:product,id'],
+            'supplier_id' => ['nullable', 'exists:supplier,id'],
             'quantity' => ['required', 'integer', 'min:1'],
             'unit_cost' => ['required', 'numeric', 'min:0'],
             'stock_date' => ['required', 'date'],

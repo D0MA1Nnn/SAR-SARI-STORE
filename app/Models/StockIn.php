@@ -16,9 +16,9 @@ class StockIn extends Model
 
     protected $fillable = [
         'product_id',
+        'supplier_id',  // Add this
         'quantity',
         'unit_cost',
-        'supplier_id',
         'stock_date',
         'reference',
         'notes',
@@ -35,5 +35,10 @@ class StockIn extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function supplier(): BelongsTo
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 }

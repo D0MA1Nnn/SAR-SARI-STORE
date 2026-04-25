@@ -40,4 +40,8 @@ Route::middleware('auth')->group(function (): void {
     ]);
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/test', function () {
+        return 'OK';
+    });
 });
