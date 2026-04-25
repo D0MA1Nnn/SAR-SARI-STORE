@@ -40,7 +40,7 @@ class Sale extends Model
     public function getTotalAmountAttribute(): float
     {
         return (float) $this->salesDetails->sum(fn (SalesDetail $detail) =>
-            (float) ($detail->quantity ?? 0) * (float) ($detail->product?->price ?? 0)
+            (float) ($detail->quantity ?? 0) * (float) ($detail->product?->current_price ?? 0)
         );
     }
 }

@@ -59,7 +59,9 @@
                         @forelse($sales as $sale)
                             <tr class="transition-colors hover:bg-slate-50/50">
                                 <td class="px-6 py-4 text-slate-600">{{ optional($sale->sales_date)->format('M d, Y') ?? '—' }}</td>
-                                <td class="px-6 py-4 font-medium text-slate-700">{{ $sale->customer?->customer_name ?? 'Walk-in Customer' }}</td>
+                                <td class="px-6 py-4 font-medium text-slate-700">
+                                    {{ $sale->customer ? trim($sale->customer->customer_firstname . ' ' . ($sale->customer->customer_middlename ?? '') . ' ' . $sale->customer->customer_lastname) : 'Walk-in Customer' }}
+                                </td>
                                 <td class="px-6 py-4 text-slate-600">{{ $sale->salesDetails->sum('quantity') }} items</td>
                                 <td class="px-6 py-4 font-semibold text-emerald-700">₱ {{ number_format($sale->total_amount, 2) }}</td>
                                 <td class="px-6 py-4">

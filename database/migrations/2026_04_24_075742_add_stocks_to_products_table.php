@@ -8,15 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->integer('stocks')->default(0)->after('price');
+        Schema::table('product', function (Blueprint $table) {
+            if (!Schema::hasColumn('product', 'stock')) {
+                $table->integer('stock')->default(0)->after('current_price');
+            }
         });
     }
 
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('stocks');
+        Schema::table('product', function (Blueprint $table) {
+            if (Schema::hasColumn('product', 'stock')) {
+                $table->dropColumn('stock');
+            }
         });
     }
 };

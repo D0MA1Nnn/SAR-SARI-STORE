@@ -34,7 +34,9 @@
                         </div>
                         <div>
                             <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Customer</p>
-                            <p class="mt-0.5 text-base font-semibold text-slate-800">{{ $payment->customer?->customer_name ?? 'N/A' }}</p>
+                            <p class="mt-0.5 text-base font-semibold text-slate-800">
+                                {{ $payment->customer ? trim($payment->customer->customer_firstname . ' ' . ($payment->customer->customer_middlename ?? '') . ' ' . $payment->customer->customer_lastname) : 'N/A' }}
+                            </p>
                         </div>
                     </div>
 

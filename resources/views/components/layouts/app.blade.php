@@ -46,11 +46,12 @@
             ['route' => 'dashboard', 'label' => 'Dashboard', 'icon' => 'fa-chart-line', 'pattern' => 'dashboard*'],
             ['route' => 'categories.index', 'label' => 'Categories', 'icon' => 'fa-tags', 'pattern' => 'categories*'],
             ['route' => 'products.index', 'label' => 'Products', 'icon' => 'fa-boxes-stacked', 'pattern' => 'products*'],
+            ['route' => 'stock-in.index', 'label' => 'Stock In', 'icon' => 'fa-arrow-down-wide-short', 'pattern' => 'stock-in*'],
+            ['route' => 'stock-out.index', 'label' => 'Stock Out', 'icon' => 'fa-arrow-up-wide-short', 'pattern' => 'stock-out*'],
             ['route' => 'customers.index', 'label' => 'Customers', 'icon' => 'fa-users', 'pattern' => 'customers*'],
             ['route' => 'sales.index', 'label' => 'Sales', 'icon' => 'fa-cart-shopping', 'pattern' => 'sales*'],
             ['route' => 'payments.index', 'label' => 'Payments', 'icon' => 'fa-credit-card', 'pattern' => 'payments*'],
             ['route' => 'block-list.index', 'label' => 'Block List', 'icon' => 'fa-ban', 'pattern' => 'block-list*'],
-            ['route' => 'logs.index', 'label' => 'Cash Logs', 'icon' => 'fa-clock-rotate-left', 'pattern' => 'logs*'],
         ];
     @endphp
 
@@ -84,7 +85,7 @@
                 @endforeach
             </nav>
 
-            <!-- User Profile & Logout Section - Below Cash Logs -->
+            <!-- User Profile & Logout Section -->
             <div class="border-t border-slate-200 p-5 space-y-4">
                 <!-- User Profile Card -->
                 <div class="flex items-center gap-3">

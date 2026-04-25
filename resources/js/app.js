@@ -1,3 +1,6 @@
+import './bootstrap';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 for (const id of ['toast-success', 'toast-error']) {
 	const el = document.getElementById(id);
 	if (!el) continue;

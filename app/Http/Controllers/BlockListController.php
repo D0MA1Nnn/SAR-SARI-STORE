@@ -20,7 +20,11 @@ class BlockListController extends Controller
         $search = request('search');
 
         $blockLists = BlockList::with(['customer', 'violation'])
-            ->when($search, fn ($query) => $query->whereHas('customer', fn ($q) => $q->where('customer_name', 'like', "%{$search}%")))
+            ->when($search, fn ($query) => $query->whereHas('customer', function ($q) use ($search) {
+                $q->where('customer_firstname', 'like', "%{$search}%")
+                    ->orWhere('customer_middlename', 'like', "%{$search}%")
+                    ->orWhere('customer_lastname', 'like', "%{$search}%");
+            }))
             ->orderByDesc('id')
             ->paginate(10)
             ->withQueryString();
@@ -33,7 +37,9 @@ class BlockListController extends Controller
      */
     public function create(): View
     {
-        $customers = Customer::orderBy('customer_name')->get();
+        $customers = Customer::orderBy('customer_lastname')
+            ->orderBy('customer_firstname')
+            ->get();
         $violations = Violation::orderBy('description')->get();
 
         return view('block-list.create', compact('customers', 'violations'));
@@ -64,7 +70,9 @@ class BlockListController extends Controller
      */
     public function edit(BlockList $blockList): View
     {
-        $customers = Customer::orderBy('customer_name')->get();
+        $customers = Customer::orderBy('customer_lastname')
+            ->orderBy('customer_firstname')
+            ->get();
         $violations = Violation::orderBy('description')->get();
 
         return view('block-list.edit', compact('blockList', 'customers', 'violations'));

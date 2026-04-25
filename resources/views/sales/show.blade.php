@@ -11,7 +11,9 @@
                 <div class="grid gap-4 sm:grid-cols-2">
                     <div>
                         <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Customer</p>
-                        <p class="mt-1 text-base font-semibold text-slate-800">{{ $sale->customer?->customer_name ?? 'Walk-in Customer' }}</p>
+                        <p class="mt-1 text-base font-semibold text-slate-800">
+                            {{ $sale->customer ? trim($sale->customer->customer_firstname . ' ' . ($sale->customer->customer_middlename ?? '') . ' ' . $sale->customer->customer_lastname) : 'Walk-in Customer' }}
+                        </p>
                     </div>
                     <div>
                         <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Sales Date</p>
@@ -36,10 +38,10 @@
                         <tbody class="divide-y divide-slate-100">
                             @foreach($sale->salesDetails as $detail)
                                 <tr class="hover:bg-slate-50/50">
-                                    <td class="px-4 py-3 font-medium text-slate-700">{{ $detail->product?->product_name ?? 'N/A' }}</td>
+                                    <td class="px-4 py-3 font-medium text-slate-700">{{ $detail->product?->name ?? 'N/A' }}</td>
                                     <td class="px-4 py-3 text-right text-slate-600">{{ $detail->quantity }}</td>
-                                    <td class="px-4 py-3 text-right text-slate-600">₱ {{ number_format($detail->product?->price ?? 0, 2) }}</td>
-                                    <td class="px-4 py-3 text-right font-semibold text-emerald-700">₱ {{ number_format(($detail->product?->price ?? 0) * $detail->quantity, 2) }}</td>
+                                    <td class="px-4 py-3 text-right text-slate-600">₱ {{ number_format($detail->product?->current_price ?? 0, 2) }}</td>
+                                    <td class="px-4 py-3 text-right font-semibold text-emerald-700">₱ {{ number_format(($detail->product?->current_price ?? 0) * $detail->quantity, 2) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

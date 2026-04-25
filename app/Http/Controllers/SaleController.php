@@ -21,7 +21,11 @@ class SaleController extends Controller
         $search = request('search');
 
         $sales = Sale::with(['customer', 'salesDetails.product'])
-            ->when($search, fn ($query) => $query->whereHas('customer', fn ($q) => $q->where('customer_name', 'like', "%{$search}%")))
+            ->when($search, fn ($query) => $query->whereHas('customer', function ($q) use ($search) {
+                $q->where('customer_firstname', 'like', "%{$search}%")
+                    ->orWhere('customer_middlename', 'like', "%{$search}%")
+                    ->orWhere('customer_lastname', 'like', "%{$search}%");
+            }))
             ->latest('sales_date')
             ->paginate(10)
             ->withQueryString();
@@ -34,8 +38,10 @@ class SaleController extends Controller
      */
     public function create(): View
     {
-        $customers = Customer::orderBy('customer_name')->get();
-        $products = Product::orderBy('product_name')->get();
+        $customers = Customer::orderBy('customer_lastname')
+            ->orderBy('customer_firstname')
+            ->get();
+        $products = Product::orderBy('name')->get();
 
         return view('sales.create', compact('customers', 'products'));
     }
@@ -72,8 +78,10 @@ class SaleController extends Controller
     public function edit(Sale $sale): View
     {
         $sale->load('salesDetails');
-        $customers = Customer::orderBy('customer_name')->get();
-        $products = Product::orderBy('product_name')->get();
+        $customers = Customer::orderBy('customer_lastname')
+            ->orderBy('customer_firstname')
+            ->get();
+        $products = Product::orderBy('name')->get();
 
         return view('sales.edit', compact('sale', 'customers', 'products'));
     }

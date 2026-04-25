@@ -91,10 +91,12 @@
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
                                         <div class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-sm font-semibold text-emerald-700">
-                                            {{ strtoupper(substr($blockList->customer->customer_name ?? 'N', 0, 2)) }}
+                                            {{ strtoupper(substr($blockList->customer->customer_firstname ?? 'N', 0, 1) . substr($blockList->customer->customer_lastname ?? '', 0, 1)) }}
                                         </div>
                                         <div>
-                                            <p class="font-medium text-slate-800">{{ $blockList->customer->customer_name ?? 'N/A' }}</p>
+                                            <p class="font-medium text-slate-800">
+                                                {{ $blockList->customer ? trim($blockList->customer->customer_firstname . ' ' . ($blockList->customer->customer_middlename ?? '') . ' ' . $blockList->customer->customer_lastname) : 'N/A' }}
+                                            </p>
                                             <p class="text-xs text-slate-400">ID: #{{ $blockList->customer->id ?? 'N/A' }}</p>
                                         </div>
                                     </div>

@@ -2,13 +2,15 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlockListController;
-use App\Http\Controllers\CashLogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\StockInController;
+use App\Http\Controllers\StockOutController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,7 +34,9 @@ Route::middleware('auth')->group(function (): void {
         'sales' => SaleController::class,
         'payments' => PaymentController::class,
         'block-list' => BlockListController::class,
-        'logs' => CashLogController::class,
+        'stock-in' => StockInController::class,
+        'stock-out' => StockOutController::class,
+        'suppliers' => SupplierController::class,
     ]);
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

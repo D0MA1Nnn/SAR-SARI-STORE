@@ -15,15 +15,18 @@ class TransactionalSeeder extends Seeder
     {
         for ($i = 1; $i <= 50; $i++) {
             Customer::query()->create([
-                'customer_name' => 'Customer_'.$i,
+                'customer_firstname' => 'Customer',
+                'customer_middlename' => null,
+                'customer_lastname' => (string) $i,
                 'contact_number' => '09'.str_pad((string) random_int(0, 999999999), 9, '0', STR_PAD_LEFT),
                 'collateral_type_id' => random_int(1, 10),
             ]);
 
             Product::query()->create([
-                'product_name' => 'Product_'.$i,
+                'name' => 'Product_'.$i,
                 'category_id' => random_int(1, 10),
-                'price' => random_int(10, 220),
+                'current_price' => random_int(10, 220),
+                'stock' => random_int(10, 80),
             ]);
 
             CashLog::query()->create([

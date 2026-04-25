@@ -21,7 +21,11 @@ class PaymentController extends Controller
         $search = request('search');
 
         $payments = Payment::with(['customer', 'paymentMethod', 'paymentStatus'])
-            ->when($search, fn ($query) => $query->whereHas('customer', fn ($q) => $q->where('customer_name', 'like', "%{$search}%")))
+            ->when($search, fn ($query) => $query->whereHas('customer', function ($q) use ($search) {
+                $q->where('customer_firstname', 'like', "%{$search}%")
+                    ->orWhere('customer_middlename', 'like', "%{$search}%")
+                    ->orWhere('customer_lastname', 'like', "%{$search}%");
+            }))
             ->latest('payment_date')
             ->paginate(10)
             ->withQueryString();
@@ -34,7 +38,9 @@ class PaymentController extends Controller
      */
     public function create(): View
     {
-        $customers = Customer::orderBy('customer_name')->get();
+        $customers = Customer::orderBy('customer_lastname')
+            ->orderBy('customer_firstname')
+            ->get();
         $paymentMethods = PaymentMethod::orderBy('description')->get();
         $statuses = SysStatus::orderBy('description')->get();
 
@@ -66,7 +72,9 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment): View
     {
-        $customers = Customer::orderBy('customer_name')->get();
+        $customers = Customer::orderBy('customer_lastname')
+            ->orderBy('customer_firstname')
+            ->get();
         $paymentMethods = PaymentMethod::orderBy('description')->get();
         $statuses = SysStatus::orderBy('description')->get();
 

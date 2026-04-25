@@ -13,7 +13,7 @@
                     </div>
                     <div class="flex-1">
                         <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Product Name</p>
-                        <p class="mt-0.5 text-base font-semibold text-slate-800">{{ $product->product_name }}</p>
+                        <p class="mt-0.5 text-base font-semibold text-slate-800">{{ $product->name }}</p>
                     </div>
                 </div>
 
@@ -36,8 +36,28 @@
                         <i class="fa-solid fa-currency-sign text-amber-600"></i>
                     </div>
                     <div class="flex-1">
-                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Price</p>
-                        <p class="mt-0.5 text-2xl font-bold text-emerald-700">₱ {{ number_format($product->price, 2) }}</p>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Current Price</p>
+                        <p class="mt-0.5 text-2xl font-bold text-emerald-700">₱ {{ number_format($product->current_price, 2) }}</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 border-t border-slate-100 pt-4">
+                    <div class="rounded-lg bg-slate-100 p-2">
+                        <i class="fa-solid fa-tag text-slate-500"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Stock</p>
+                        <p class="mt-0.5 text-sm text-slate-700">{{ $product->stock ?? 0 }}</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <div class="rounded-lg bg-slate-100 p-2">
+                        <i class="fa-solid fa-circle-check text-slate-500"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Status</p>
+                        <p class="mt-0.5 text-sm text-slate-700">{{ $product->is_active ? 'Active' : 'Inactive' }}</p>
                     </div>
                 </div>
             </div>

@@ -17,8 +17,8 @@ class ProductController extends Controller
         $search = request('search');
 
         $products = Product::with('category')
-            ->when($search, fn ($query) => $query->where('product_name', 'like', "%{$search}%"))
-            ->orderBy('id')
+            ->when($search, fn ($query) => $query->where('name', 'like', "%{$search}%"))
+            ->orderBy('name')
             ->paginate(10)
             ->withQueryString();
 
@@ -36,7 +36,17 @@ class ProductController extends Controller
     //(CREATE operation)
     public function store(StoreProductRequest $request): RedirectResponse
     {
-        Product::create($request->validated());
+        $data = $request->validated();
+        
+        // Set default markup_percent if not provided
+        if (!isset($data['markup_percent'])) {
+            $data['markup_percent'] = 20;
+        }
+        
+        // Set last_cost same as current_price for new products
+        $data['last_cost'] = $data['current_price'];
+        
+        Product::create($data);
 
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
@@ -60,7 +70,16 @@ class ProductController extends Controller
     //(UPDATE operation)
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
-        $product->update($request->validated());
+        $data = $request->validated();
+        
+        // If price is manually changed, update last_cost and markup_percent accordingly
+        if (isset($data['current_price']) && $data['current_price'] != $product->current_price) {
+            // Calculate implied last_cost based on markup_percent
+            $markupPercent = $data['markup_percent'] ?? $product->markup_percent ?? 20;
+            $data['last_cost'] = round($data['current_price'] / (1 + ($markupPercent / 100)), 2);
+        }
+        
+        $product->update($data);
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }

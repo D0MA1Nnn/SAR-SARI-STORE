@@ -52,7 +52,9 @@
                     <tbody class="divide-y divide-slate-100 text-sm">
                         @forelse($customers as $customer)
                             <tr class="transition-colors hover:bg-slate-50/50">
-                                <td class="px-6 py-4 font-medium text-slate-700">{{ $customer->customer_name }}</td>
+                                <td class="px-6 py-4 font-medium text-slate-700">
+                                    {{ trim($customer->customer_firstname . ' ' . ($customer->customer_middlename ?? '') . ' ' . $customer->customer_lastname) }}
+                                </td>
                                 <td class="px-6 py-4 text-slate-600">{{ $customer->contact_number ?? '—' }}</td>
                                 <td class="px-6 py-4">
                                     @if($customer->collateralType)

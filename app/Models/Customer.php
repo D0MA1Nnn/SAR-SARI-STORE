@@ -16,7 +16,9 @@ class Customer extends Model
     protected $table = 'customer';
 
     protected $fillable = [
-        'customer_name',
+        'customer_firstname',
+        'customer_middlename',
+        'customer_lastname',
         'contact_number',
         'collateral_type_id',
     ];

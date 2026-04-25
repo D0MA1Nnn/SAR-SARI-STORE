@@ -1,14 +1,40 @@
 @csrf
 <div class="space-y-6">
     <div>
-        <label for="customer_name" class="mb-1.5 block text-sm font-semibold text-slate-700">Customer Name</label>
+        <label for="customer_firstname" class="mb-1.5 block text-sm font-semibold text-slate-700">First Name</label>
         <input type="text"
-                name="customer_name"
-                id="customer_name"
-                value="{{ old('customer_name', $customer->customer_name ?? '') }}"
-                placeholder="Enter full name..."
+                name="customer_firstname"
+                id="customer_firstname"
+                value="{{ old('customer_firstname', $customer->customer_firstname ?? '') }}"
+                placeholder="Enter first name..."
                 class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
-        @error('customer_name')
+        @error('customer_firstname')
+            <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div>
+        <label for="customer_middlename" class="mb-1.5 block text-sm font-semibold text-slate-700">Middle Name</label>
+        <input type="text"
+                name="customer_middlename"
+                id="customer_middlename"
+                value="{{ old('customer_middlename', $customer->customer_middlename ?? '') }}"
+                placeholder="Enter middle name (optional)..."
+                class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        @error('customer_middlename')
+            <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div>
+        <label for="customer_lastname" class="mb-1.5 block text-sm font-semibold text-slate-700">Last Name</label>
+        <input type="text"
+                name="customer_lastname"
+                id="customer_lastname"
+                value="{{ old('customer_lastname', $customer->customer_lastname ?? '') }}"
+                placeholder="Enter last name..."
+                class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm text-slate-700 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+        @error('customer_lastname')
             <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>

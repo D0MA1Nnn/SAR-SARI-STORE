@@ -9,7 +9,7 @@
                 <option value="">Select a customer</option>
                 @foreach($customers as $customer)
                     <option value="{{ $customer->id }}" @selected(old('customer_id', $payment->customer_id ?? '') == $customer->id)>
-                        {{ $customer->customer_name }}
+                        {{ trim($customer->customer_firstname . ' ' . ($customer->customer_middlename ?? '') . ' ' . $customer->customer_lastname) }}
                     </option>
                 @endforeach
             </select>

@@ -9,7 +9,7 @@
                 <option value="">Select a customer</option>
                 @foreach($customers as $customer)
                     <option value="{{ $customer->id }}" @selected(old('customer_id', $sale->customer_id ?? '') == $customer->id)>
-                        {{ $customer->customer_name }}
+                        {{ trim($customer->customer_firstname . ' ' . ($customer->customer_middlename ?? '') . ' ' . $customer->customer_lastname) }}
                     </option>
                 @endforeach
             </select>
@@ -58,8 +58,8 @@
                             <select name="details[{{ $idx }}][product_id]" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500" required>
                                 <option value="">Select product</option>
                                 @foreach($products as $product)
-                                    <option value="{{ $product->id }}" data-price="{{ $product->price }}" @selected(($detail['product_id'] ?? '') == $product->id)>
-                                        {{ $product->product_name }} - ₱ {{ number_format($product->price, 2) }}
+                                    <option value="{{ $product->id }}" data-price="{{ $product->current_price }}" @selected(($detail['product_id'] ?? '') == $product->id)>
+                                        {{ $product->name }} - ₱ {{ number_format($product->current_price, 2) }}
                                     </option>
                                 @endforeach
                             </select>
@@ -94,7 +94,7 @@
 
 <script>
     (() => {
-        const products = @json($products->map(fn($p) => ['id' => $p->id, 'name' => $p->product_name, 'price' => $p->price]));
+        const products = @json($products->map(fn($p) => ['id' => $p->id, 'name' => $p->name, 'price' => $p->current_price]));
         const rows = document.getElementById('detail-rows');
         const addBtn = document.getElementById('add-row');
 

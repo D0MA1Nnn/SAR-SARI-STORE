@@ -45,20 +45,30 @@
                         <tr class="border-b border-slate-100 bg-slate-50/50 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                             <th class="px-6 py-3">Product Name</th>
                             <th class="px-6 py-3">Category</th>
-                            <th class="px-6 py-3">Price</th>
+                            <th class="px-6 py-3">Current Price</th>
+                            <th class="px-6 py-3">Stock</th>
+                            <th class="px-6 py-3">Status</th>
                             <th class="px-6 py-3 text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 text-sm">
                         @forelse($products as $product)
                             <tr class="transition-colors hover:bg-slate-50/50">
-                                <td class="px-6 py-4 font-medium text-slate-700">{{ $product->product_name }}</td>
+                                <td class="px-6 py-4 font-medium text-slate-700">{{ $product->name }}</td>
                                 <td class="px-6 py-4">
                                     <span class="inline-flex rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
                                         {{ $product->category?->description ?? 'Uncategorized' }}
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 font-semibold text-emerald-700">₱ {{ number_format($product->price, 2) }}</td>
+                                <td class="px-6 py-4 font-semibold text-emerald-700">₱ {{ number_format($product->current_price, 2) }}</td>
+                                <td class="px-6 py-4 font-medium text-slate-700">{{ $product->stock ?? 0 }}</td>
+                                <td class="px-6 py-4">
+                                    @if($product->is_active)
+                                        <span class="inline-flex rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">Active</span>
+                                    @else
+                                        <span class="inline-flex rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">Inactive</span>
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-end gap-4">
                                         <a href="{{ route('products.show', $product) }}" class="inline-flex items-center gap-1 text-sm font-medium text-emerald-600 transition hover:text-emerald-800">
@@ -82,7 +92,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="px-6 py-12 text-center">
+                                <td colspan="6" class="px-6 py-12 text-center">
                                     <div class="flex flex-col items-center gap-2">
                                         <i class="fa-regular fa-box-open text-3xl text-slate-300"></i>
                                         <p class="text-sm text-slate-400">No products found.</p>

@@ -19,7 +19,11 @@ class CustomerController extends Controller
         $search = request('search');
 
         $customers = Customer::with('collateralType')
-            ->when($search, fn ($query) => $query->where('customer_name', 'like', "%{$search}%"))
+            ->when($search, fn ($query) => $query->where(function ($q) use ($search) {
+                $q->where('customer_firstname', 'like', "%{$search}%")
+                    ->orWhere('customer_middlename', 'like', "%{$search}%")
+                    ->orWhere('customer_lastname', 'like', "%{$search}%");
+            }))
             ->orderBy('id')
             ->paginate(10)
             ->withQueryString();

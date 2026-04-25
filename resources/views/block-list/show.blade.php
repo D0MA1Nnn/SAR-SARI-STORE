@@ -25,7 +25,9 @@
                     </div>
                     <div>
                         <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Customer</p>
-                        <p class="mt-0.5 text-base font-semibold text-slate-800">{{ $blockList->customer->customer_name ?? 'N/A' }}</p>
+                        <p class="mt-0.5 text-base font-semibold text-slate-800">
+                            {{ $blockList->customer ? trim($blockList->customer->customer_firstname . ' ' . ($blockList->customer->customer_middlename ?? '') . ' ' . $blockList->customer->customer_lastname) : 'N/A' }}
+                        </p>
                         <p class="text-xs text-slate-400">ID: #{{ $blockList->customer->id ?? 'N/A' }}</p>
                     </div>
                 </div>

@@ -14,10 +14,11 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_name' => 'required|string|max:255|unique:products,product_name,' . $this->product->id,
-            'category_id' => 'required|exists:categories,id',
-            'price' => 'required|numeric|min:0',
-            'stocks' => 'required|integer|min:0',
+            'name' => 'required|string|max:255|unique:product,name,' . $this->product->id,
+            'category_id' => 'required|exists:category,id',
+            'current_price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'is_active' => 'required|boolean',
         ];
     }
 }

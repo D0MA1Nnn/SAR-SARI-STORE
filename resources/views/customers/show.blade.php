@@ -13,7 +13,9 @@
                     </div>
                     <div class="flex-1">
                         <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Customer Name</p>
-                        <p class="mt-0.5 text-base font-semibold text-slate-800">{{ $customer->customer_name }}</p>
+                        <p class="mt-0.5 text-base font-semibold text-slate-800">
+                            {{ trim($customer->customer_firstname . ' ' . ($customer->customer_middlename ?? '') . ' ' . $customer->customer_lastname) }}
+                        </p>
                     </div>
                 </div>
 
